@@ -656,5 +656,59 @@ const products = [
       "apparel",
       "mens"
     ]
+  },{
+    id:"id1",
+    name:"Umbrella with dual protection(Sun and Rain)",
+    image: "images/products/umbrella.jpg",
+    rating:{
+      stars:4.5,
+      count:354
+    },
+    priceCents:3960
+  },{
+    id:"id2",
+    name:"Black Backpack with laptop carrier",
+    image: "images/products/backpack.jpg",
+    rating:{
+      stars:3.5,
+      count:564
+    },
+    priceCents:7990
+  },{
+    id:"id3",
+    name:"Jawline perfecting Roller",
+    image: "images/products/rollerimg.jpg",
+    rating:{
+      stars:4.5,
+      count:1940
+    },
+    priceCents:4590
+  },{
+    id:"id4",
+    name:"Chanel Coco Perfume",
+    image: "images/products/chanel.jpg",
+    rating:{
+      stars:4.5,
+      count:123
+    },
+    priceCents:19920
+  },{
+    id:"id4",
+    name:"Gucci Bag with Gold chain sling",
+    image: "images/products/Gucci.jpg",
+    rating:{
+      stars:4.5,
+      count:230
+    },
+    priceCents:27990
+  },{
+    id:"id5",
+    name:" MacBook Air Pro 8GB RAM/1TB Storage",
+    image: "images/products/macbook.jpg",
+    rating:{
+      stars:3.5,
+      count:564
+    },
+    priceCents:7990
   }
 ];
