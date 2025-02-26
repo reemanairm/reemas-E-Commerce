@@ -693,7 +693,7 @@ export const products = [
     },
     priceCents:19920
   },{
-    id:"id4",
+    id:"id5",
     name:"Gucci Bag with Gold chain sling",
     image: "images/products/Gucci.jpg",
     rating:{
@@ -702,7 +702,7 @@ export const products = [
     },
     priceCents:27990
   },{
-    id:"id5",
+    id:"id6",
     name:" MacBook Air Pro 8GB RAM/1TB Storage",
     image: "images/products/macbook.jpg",
     rating:{
