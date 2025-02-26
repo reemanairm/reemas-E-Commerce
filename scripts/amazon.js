@@ -62,3 +62,11 @@ timeset(productid);
 showcartquantity();
    });
 });
+
+function cartdp(){
+  let cartquantity=0;
+  cart.forEach((item)=>{cartquantity+=item.Quantity;});
+  document.querySelector('.js-cart-quantity').innerHTML=`${cartquantity}`;
+}
+
+cartdp();
