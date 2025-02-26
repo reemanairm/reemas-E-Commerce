@@ -64,7 +64,7 @@ showcartquantity();
 });
 
 function cartdp(){
-  let cartquantity=0;
+  let cartquantity='';
   cart.forEach((item)=>{cartquantity+=item.Quantity;});
   document.querySelector('.js-cart-quantity').innerHTML=`${cartquantity}`;
 }

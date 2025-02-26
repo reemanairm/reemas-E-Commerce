@@ -145,3 +145,40 @@ forEach((link)=>{link.addEventListener
   });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('.js-save-link').forEach((link) => {
+    const productid = link.dataset.productId;
+    const quantityinput = document.querySelector(`.js-cart-container-${productid} .quantity-input`);
+    
+    // Click event
+    link.addEventListener('click', () => {
+      handleUpdateQuantity(productid, quantityinput);
+    });
+    
+    // Keydown event
+    quantityinput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        handleUpdateQuantity(productid, quantityinput);
+      }
+    });
+  });
+});
+
+function handleUpdateQuantity(productid, quantityinput) {
+  const newQuantity = Number(quantityinput.value);
+
+  if (newQuantity <= 0 || newQuantity >= 1000) {
+    alert('Quantity must be at least 1 and less than 1000');
+    return; // early return
+  }
+
+  updatequantity(productid, newQuantity);
+
+  const quantityLabel = document.querySelector(`.js-quantity-label-${productid}`);
+  quantityLabel.innerHTML = newQuantity;
+
+  showcartquantity();
+
+  const container = document.querySelector(`.js-cart-container-${productid}`);
+  container.classList.remove('is-editing');
+}
