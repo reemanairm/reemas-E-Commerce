@@ -63,10 +63,12 @@ showcartquantity();
    });
 });
 
-function cartdp(){
-  let cartquantity='';
-  cart.forEach((item)=>{cartquantity+=item.Quantity;});
-  document.querySelector('.js-cart-quantity').innerHTML=`${cartquantity}`;
+function cartdp() {
+  let cartquantity = 0;
+  cart.forEach((item) => {
+    cartquantity += item.quantity;
+  });
+  document.querySelector('.js-cart-quantity').innerHTML = cartquantity;
 }
 
 cartdp();
