@@ -9,6 +9,7 @@ if (!cart) {
     quantity: 1,
     deliveryoptionid: '2'
   }];
+  savetostorage();
 }
 
 export function savetostorage() {
@@ -20,7 +21,14 @@ export function showcartquantity() {
   cart.forEach((item) => {
     cartquantity += item.quantity;
   });
-  document.querySelector('.js-cart-quantity').innerHTML = cartquantity;
+  const cartQuantityElement = document.querySelector('.js-cart-quantity');
+  if (cartQuantityElement) {
+    cartQuantityElement.innerHTML = cartquantity;
+  }
+  const checkoutElement = document.querySelector('.js-checkout');
+  if (checkoutElement) {
+    checkoutElement.innerHTML = `${cartquantity} items`;
+  }
   savetostorage();
 }
 

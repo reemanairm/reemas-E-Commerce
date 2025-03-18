@@ -63,12 +63,18 @@ showcartquantity();
    });
 });
 
+// Ensure cart quantity is displayed on page load
+showcartquantity();
+
 function cartdp() {
   let cartquantity = 0;
   cart.forEach((item) => {
     cartquantity += item.quantity;
   });
-  document.querySelector('.js-cart-quantity').innerHTML = cartquantity;
+  const cartQuantityElement = document.querySelector('.js-cart-quantity');
+  if (cartQuantityElement) {
+    cartQuantityElement.innerHTML = cartquantity;
+  }
 }
 
 cartdp();
