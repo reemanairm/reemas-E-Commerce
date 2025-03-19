@@ -36,6 +36,8 @@ function deliveryoptionshtml(matchingproduct, cartitem) {
   return html;
 }
 
+function renderOrderSummary(){
+
 let cartsummary = '';
 cart.forEach((cartitem) => {
   const productid = cartitem.productid;
@@ -198,7 +200,7 @@ document.addEventListener('change', (event) => {
       cartitem.deliveryoptionid = deliveryoptionid;
       updateDeliveryDate(productid, deliveryoptionid);
     }
-  }
+  } renderOrderSummary();
 });
 
 function updateDeliveryDate(productid, deliveryoptionid) {
@@ -212,4 +214,6 @@ function updateDeliveryDate(productid, deliveryoptionid) {
     const deliveryDateElement = container.querySelector('.delivery-date');
     deliveryDateElement.innerHTML = `Delivery date: ${datestring}`;
   }
-}
+} }
+
+renderOrderSummary();
