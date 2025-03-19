@@ -50,8 +50,9 @@ cart.forEach((cartitem) => {
   let deliveryoptionid = cartitem.deliveryoptionid;
 
   if (!deliveryoptionid) {
-    console.error(`Delivery option ID not found for product ID ${productid}`);
-    return;
+    // Set a default delivery option ID if not found
+    deliveryoptionid = deliveryoptions[0].id;
+    cartitem.deliveryoptionid = deliveryoptionid;
   }
 
   let deliveryoption = deliveryoptions.find(option => option.id === deliveryoptionid);
