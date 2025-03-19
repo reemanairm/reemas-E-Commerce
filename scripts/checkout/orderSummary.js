@@ -1,8 +1,8 @@
 import {cart, removefromcart, updatequantity, showcartquantity} from '../../data/cart.js';
-import {products} from '../../data/products.js';
+import {products,getproduct} from '../../data/products.js';
 import {formatcurrency} from '../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
-import {deliveryoptions} from '../../data/deliveryoptions.js';
+import {deliveryoptions,getdeliveryoption} from '../../data/deliveryoptions.js';
 
 function deliveryoptionshtml(matchingproduct, cartitem) {
   let html = '';
@@ -42,12 +42,7 @@ let cartsummary = '';
 cart.forEach((cartitem) => {
   const productid = cartitem.productid;
 
-  let matchingproduct = products.find(product => product.id === productid);
-
-  if (!matchingproduct) {
-    console.error(`Product with ID ${productid} not found`);
-    return;
-  }
+  let matchingproduct = getproduct(productid);
 
   let deliveryoptionid = cartitem.deliveryoptionid;
 
@@ -57,7 +52,7 @@ cart.forEach((cartitem) => {
     cartitem.deliveryoptionid = deliveryoptionid;
   }
 
-  let deliveryoption = deliveryoptions.find(option => option.id === deliveryoptionid);
+  let deliveryoption = getdeliveryoption(deliveryoptionid);
 
   if (!deliveryoption) {
     console.error(`Delivery option with ID ${deliveryoptionid} not found`);
