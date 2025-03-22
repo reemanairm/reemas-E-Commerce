@@ -11,5 +11,11 @@ it('works with zero',() => {
 
 it('rounds up to the nearest cents',() => {
     expect(formatcurrency(2000.5)).toEqual('20.01');
+    expect(formatcurrency(2000.4)).toEqual('20.00');
 });
+
+it('works with negative number',() => {
+   expect(formatcurrency(-500)).toEqual('-5.00');
+});
+
 });

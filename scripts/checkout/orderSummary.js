@@ -16,9 +16,9 @@ function deliveryoptionshtml(matchingproduct, cartitem) {
 
     const ischecked = deliveryoption.id === cartitem.deliveryoptionid;
     html += `
-<div class="delivery-option">
+<div class="delivery-option js-delivery-option-id-${matchingproduct.id}-${deliveryoption.id}">
   <input type="radio" ${ischecked ? 'checked' : ''}
-    class="delivery-option-input"
+    class="delivery-option-input js-delivery-option-input-${matchingproduct.id}-${deliveryoption.id}"
     name="delivery-option-${matchingproduct.id}"
     data-product-id="${matchingproduct.id}"
     data-delivery-option-id="${deliveryoption.id}">
@@ -71,10 +71,10 @@ cart.forEach((cartitem) => {
           src="${matchingproduct.image}">
 
         <div class="cart-item-details">
-          <div class="product-name">
+          <div class="product-name js-product-name-${matchingproduct.id}">
             ${matchingproduct.name}
           </div>
-          <div class="product-price">
+          <div class="product-price js-product-price-${matchingproduct.id}">
             $${formatcurrency(matchingproduct.priceCents)}
           </div>
           <div class="product-quantity js-cart-quantity-${matchingproduct.id}">
