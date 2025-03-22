@@ -1,5 +1,5 @@
 import {cart, removefromcart, updatequantity, showcartquantity} from '../../data/cart.js';
-import {products,getproduct} from '../../data/products.js';
+import {getproduct} from '../../data/products.js';
 import {formatcurrency} from '../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryoptions,getdeliveryoption,calculateDeliveryDate} from '../../data/deliveryoptions.js';
@@ -75,7 +75,7 @@ cart.forEach((cartitem) => {
             ${matchingproduct.name}
           </div>
           <div class="product-price js-product-price-${matchingproduct.id}">
-            $${formatcurrency(matchingproduct.priceCents)}
+            $${matchingproduct.getPrice()}
           </div>
           <div class="product-quantity js-cart-quantity-${matchingproduct.id}">
             <span>

@@ -8,6 +8,28 @@ export function getproduct(productid){
 }
 
 
+class Product{
+  id;
+  image;
+  name;
+  rating;
+  priceCents;
+
+  constructor(productdeatils){
+    this.id = productdeatils.id;
+    this.image = productdeatils.image;
+    this.name = productdeatils.name;
+    this.rating = productdeatils.rating;
+    this.priceCents = productdeatils.priceCents; }
+
+    getStars() {
+      return `images/ratings/rating-${this.rating.stars*10}.png`;
+    }
+
+    getPrice() {
+      return `${(this.priceCents/100).toFixed(2)}`;
+    }
+  }
 
 export const products = [
   {
@@ -722,4 +744,6 @@ export const products = [
     },
     priceCents:7990
   }
-];
+].map((productdeatils) => {
+  return new Product(productdeatils);
+});

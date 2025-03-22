@@ -1,11 +1,11 @@
 import { loadFromStorage, validDeliveryOption } from "./cart";
 
-
-export const cart = {
+function Cart(localStorageKey){
+const cart = {
    cartitems: undefined,
 
    loadFromStorage() {
-    this.cartitems = JSON.parse(localStorage.getItem('cart-oop'));
+    this.cartitems = JSON.parse(localStorage.getItem(localStorageKey));
     if (!cart) {
       this.cartitems = [{
         productid: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
@@ -144,6 +144,11 @@ export const cart = {
   }
   
 }
+return cart;
+}
+
+const cart = Cart('cart-oop');
+const buisnesscart = Cart('buisnesscart-oop');
 
 cart.loadFromStorage();
 const addmessagetimeouts = {};
