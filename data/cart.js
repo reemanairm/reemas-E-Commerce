@@ -1,15 +1,21 @@
-export let cart = JSON.parse(localStorage.getItem('cart'));
-if (!cart) {
-  cart = [{
-    productid: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
-    quantity: 2,
-    deliveryoptionid: '1'
-  }, {
-    productid: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
-    quantity: 1,
-    deliveryoptionid: '2'
-  }];
-  savetostorage();
+export let cart; 
+
+loadFromStorage();
+
+export function loadFromStorage() {
+  cart = JSON.parse(localStorage.getItem('cart'));
+  if (!cart) {
+    cart = [{
+      productid: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
+      quantity: 2,
+      deliveryoptionid: '1'
+    }, {
+      productid: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
+      quantity: 1,
+      deliveryoptionid: '2'
+    }];
+    savetostorage();
+  }
 }
 
 export function savetostorage() {
@@ -53,7 +59,7 @@ export function timeset(productid) {
 
 export function addtocart(productid) {
   let select = document.querySelector(`.js-quantity-selector-${productid}`);
-  let qnty = Number(select.value);
+  let qnty = select ? Number(select.value) : 1; // Default to 1 if selector is not present
   let matchingitem;
   cart.forEach((item) => {
     if (productid === item.productid) {
