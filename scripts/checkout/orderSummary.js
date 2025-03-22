@@ -61,7 +61,7 @@ cart.forEach((cartitem) => {
   const datestring = calculateDeliveryDate(deliveryoption);
 
   cartsummary += `<div class="cart-item-wrapper">
-    <div class="cart-item-container js-cart-container-${matchingproduct.id}">
+    <div class="cart-item-container js-cart-container js-cart-container-${matchingproduct.id}">
       <div class="delivery-date">
         Delivery date: ${datestring}
       </div>
@@ -77,14 +77,14 @@ cart.forEach((cartitem) => {
           <div class="product-price">
             $${formatcurrency(matchingproduct.priceCents)}
           </div>
-          <div class="product-quantity">
+          <div class="product-quantity js-cart-quantity-${matchingproduct.id}">
             <span>
               Quantity: <span class="quantity-label js-quantity-label-${matchingproduct.id}">${cartitem.quantity}</span>
             </span>
             <span class="update-quantity-link link-primary js-update-link" data-product-id="${matchingproduct.id}">
               Update
             </span> <input class="quantity-input"> <span class="save-quantity-link link-primary js-save-link" data-product-id="${matchingproduct.id}">Save</span>
-            <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${matchingproduct.id}">
+            <span class="delete-quantity-link link-primary js-delete-link-${matchingproduct.id} js-delete-link" data-product-id="${matchingproduct.id}">
               Delete
             </span>
           </div>
