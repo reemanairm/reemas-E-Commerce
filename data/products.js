@@ -8,7 +8,7 @@ export function getproduct(productid){
 }
 
 
-class Product{
+export class Product{
   id;
   image;
   name;
@@ -35,7 +35,7 @@ class Product{
     }
   }
 
-  class Clothing extends Product {
+  export class Clothing extends Product {
     sizeChartLink;
 
     constructor(productdeatils) {
@@ -47,6 +47,22 @@ class Product{
       return `<a href="${this.sizeChartLink}" target="_blank">Size Chart</a>`;
     }
   } 
+
+  export class Appliance extends Product{
+    instructionsLink;
+    warrantyLink;
+  constructor(productdeatils){
+    super(productdeatils);
+    this.instructionsLink = productdeatils.instructionsLink;
+    this.warrantyLink = productdeatils.warrantyLink;
+  }
+
+  extraInfoHTML(){
+    return `<a href="${this.instructionsLink}" target="_blank">Instructions List</a> 
+    <a href="${this.warrantyLink}" target="_blank">Warranty Link</a>`;
+  }
+
+  }
 
 export const products = [
   {
@@ -108,7 +124,10 @@ export const products = [
       "toaster",
       "kitchen",
       "appliances"
-    ]
+    ],
+    type: 'appliance', 
+    instructionsLink: 'images/appliance-instructions.png', 
+    warrantyLink: 'images/appliance-warranty.png'
   },
   {
     id: "3ebe75dc-64d2-4137-8860-1f5a963e534b",
@@ -293,7 +312,10 @@ export const products = [
       "water boiler",
       "appliances",
       "kitchen"
-    ]
+    ],
+    type: 'appliance', 
+    instructionsLink: 'images/appliance-instructions.png', 
+    warrantyLink: 'images/appliance-warranty.png'
   },
   {
     id: "6b07d4e7-f540-454e-8a1e-363f25dbae7d",
@@ -598,7 +620,10 @@ export const products = [
       "coffeemakers",
       "kitchen",
       "appliances"
-    ]
+    ],
+    type: 'appliance', 
+    instructionsLink: 'images/appliance-instructions.png', 
+    warrantyLink: 'images/appliance-warranty.png'
   },
   {
     id: "02e3a47e-dd68-467e-9f71-8bf6f723fdae",
@@ -658,7 +683,10 @@ export const products = [
       "food blenders",
       "kitchen",
       "appliances"
-    ]
+    ],
+    type: 'appliance', 
+    instructionsLink: 'images/appliance-instructions.png', 
+    warrantyLink: 'images/appliance-warranty.png'
   },
   {
     id: "36c64692-677f-4f58-b5ec-0dc2cf109e27",
@@ -759,11 +787,23 @@ export const products = [
       stars:3.5,
       count:564
     },
-    priceCents:7990
-  }
+    priceCents:7990,
+    keywords: [
+      "work",
+      "technology",
+      "appliances"
+    ],
+    type: 'appliance', 
+    instructionsLink: 'images/appliance-instructions.png', 
+    warrantyLink: 'images/appliance-warranty.png'
+  },
+ 
 ].map((productdeatils) => {
   if(productdeatils.type === 'clothing') {
     return new Clothing(productdeatils);
+  }
+  else if(productdeatils.type === 'appliance') {
+    return new Appliance(productdeatils);
   }
   return new Product(productdeatils);
 });
