@@ -3,9 +3,10 @@ import {renderPaymentSummary} from './checkout/paymentSummary.js';
 import { renderCheckoutHeader } from './checkout/checkoutHeader.js';
 import '../data/car.js';
 import '../data/backend-product.js';
+import { loadStrorage } from '../data/products.js';
 
-
-renderCheckoutHeader();
-renderPaymentSummary();
-renderOrderSummary();
-
+loadStrorage(() => {
+    renderCheckoutHeader();
+    renderPaymentSummary();
+    renderOrderSummary();
+});

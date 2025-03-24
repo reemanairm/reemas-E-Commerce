@@ -1,5 +1,9 @@
 import {addtocart, cart, showcartquantity,timeset} from '../data/cart.js';
-import {products} from '../data/products.js';
+import {products, loadStrorage} from '../data/products.js';
+
+loadStrorage(renderProductsGrid);
+
+function renderProductsGrid(){
 
 let productshtml='';
 
@@ -55,6 +59,8 @@ products.forEach((product)=>{productshtml+=`<div class="product-container">
         </div>`;
 });
 
+
+
 document.querySelector('.js-products-grid').innerHTML=productshtml;
 
 
@@ -80,3 +86,5 @@ function cartdp() {
 }
 
 cartdp();
+
+}
