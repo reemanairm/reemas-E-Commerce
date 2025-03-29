@@ -4,8 +4,21 @@ import { renderCheckoutHeader } from './checkout/checkoutHeader.js';
 import '../data/car.js';
 import '../data/backend-product.js';
 import { loadStrorage } from '../data/products.js';
+import { loadCart } from '../data/cart.js';
 
-loadStrorage(() => {
+Promise.all([
+    new Promise((resolve) => {
+    loadStrorage(() => {
+        resolve('value1');
+    });
+}),
+    new Promise((resolve) => {
+        loadCart(() => {
+            resolve('value2');
+        });
+    })
+]).then((values) => {
+    console.log(values);
     renderCheckoutHeader();
     renderPaymentSummary();
     renderOrderSummary();
