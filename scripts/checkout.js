@@ -6,7 +6,40 @@ import '../data/backend-product.js';
 import { loadProductFetch } from '../data/products.js';
 import { loadCart } from '../data/cart.js';
 
-Promise.all([
+
+async function loadPage() {
+
+    try{
+
+    await loadProductFetch();
+//stroring to value to get 'value2' in resolve rather using .then to access it.
+  const value = await new Promise((resolve) => {
+        loadCart(() => {
+            resolve('value2'); 
+        });
+});
+ 
+} catch (error){
+    console.log('Unexpected Error: Please try again after sometime');
+}
+
+    renderCheckoutHeader();
+    renderPaymentSummary();
+    renderOrderSummary();
+
+}
+
+loadPage();
+
+
+
+
+
+
+
+
+
+/*Promise.all([
     loadProductFetch(),
     new Promise((resolve) => {
         loadCart(() => {
@@ -18,4 +51,4 @@ Promise.all([
     renderCheckoutHeader();
     renderPaymentSummary();
     renderOrderSummary();
-});
+});*/
