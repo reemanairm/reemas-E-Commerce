@@ -9,6 +9,23 @@ export function getproduct(productid){
 
 export let products = [];
 
+export function loadProductFetch() {
+    const promise = fetch('https://supersimplebackend.dev/products').then((response) => {
+      return response.json();
+    }).then((productData) => {
+      products = productData.map((productdeatils) => {
+        if(productdeatils.type === 'clothing') {
+          return new Clothing(productdeatils);
+        }
+        else if(productdeatils.type === 'appliance') {
+          return new Appliance(productdeatils);
+        }
+        return new Product(productdeatils);
+      });
+    });
+    return promise;
+}
+
 export function loadStrorage(fun) {
   const xhr = new XMLHttpRequest();
 

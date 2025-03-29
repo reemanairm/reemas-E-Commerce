@@ -3,15 +3,11 @@ import {renderPaymentSummary} from './checkout/paymentSummary.js';
 import { renderCheckoutHeader } from './checkout/checkoutHeader.js';
 import '../data/car.js';
 import '../data/backend-product.js';
-import { loadStrorage } from '../data/products.js';
+import { loadProductFetch } from '../data/products.js';
 import { loadCart } from '../data/cart.js';
 
 Promise.all([
-    new Promise((resolve) => {
-    loadStrorage(() => {
-        resolve('value1');
-    });
-}),
+    loadProductFetch(),
     new Promise((resolve) => {
         loadCart(() => {
             resolve('value2');
