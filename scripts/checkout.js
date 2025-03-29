@@ -4,8 +4,17 @@ import { renderCheckoutHeader } from './checkout/checkoutHeader.js';
 import '../data/car.js';
 import '../data/backend-product.js';
 import { loadProductFetch } from '../data/products.js';
-import { loadCart } from '../data/cart.js';
+import { loadCartAsync } from '../data/cart.js';
 
+Promise.all([loadProductFetch(), loadCartAsync()])
+    .then(() => {
+        renderCheckoutHeader();
+        renderPaymentSummary();
+        renderOrderSummary();
+    })
+    .catch((error) => {
+        console.error('Unexpected Error: Please try again after sometime', error);
+    });
 
 async function loadPage() {
 
@@ -13,13 +22,9 @@ async function loadPage() {
 
     await loadProductFetch();
 //stroring to value to get 'value2' in resolve rather using .then to access it.
-  const value = await new Promise((resolve) => {
-        loadCart(() => {
-            resolve('value2'); 
-        });
-});
- 
-} catch (error){
+        await loadCartAsync();
+    }
+  catch (error){
     console.log('Unexpected Error: Please try again after sometime');
 }
 

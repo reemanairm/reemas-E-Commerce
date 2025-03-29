@@ -4,10 +4,8 @@ import { renderOrderSummary } from "../../scripts/checkout/orderSummary.js"; // 
 
 describe('Test suite: renderOrderSummary',() => {
 
-    beforeAll((done) => {
-        loadProductFetch().then(()=> {
-            done();
-        });
+    beforeAll(async () => {
+        await loadProductFetch();
     });
 
     let productid1 = 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6';
