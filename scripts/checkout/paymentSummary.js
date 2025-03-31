@@ -82,11 +82,14 @@ export function renderPaymentSummary() {
           const product = getproduct(item.productid);
           return total + (product.priceCents * item.quantity);
         }, 0),
-        products: cart.map(item => ({
-          productid: item.productid,
-          quantity: item.quantity,
-          estimatedDeliveryTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString() // Example: 7 days from now
-        }))
+        products: cart.map(item => {
+          const deliveryOption = getdeliveryoption(item.deliveryoptionid);
+          return {
+            productid: item.productid,
+            quantity: item.quantity,
+            estimatedDeliveryTime: new Date(Date.now() + deliveryOption.deliveryDays * 24 * 60 * 60 * 1000).toISOString() // Calculate delivery date
+          };
+        })
       });
 
       // Clear the cart after placing the order

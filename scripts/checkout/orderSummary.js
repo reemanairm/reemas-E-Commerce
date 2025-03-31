@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Keydown event
-    quantityinput.addEventListener('keydown', (event) => {
+    link.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
         handleUpdateQuantity(productid, quantityinput);
         renderPaymentSummary();

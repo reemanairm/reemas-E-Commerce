@@ -1,7 +1,7 @@
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 export const deliveryoptions=[{
   id:'1',
-  deliveryDays: 7,
+  deliveryDays:7,
   priceCents:0
 },{
   id:'2',

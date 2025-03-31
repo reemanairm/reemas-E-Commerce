@@ -51,11 +51,11 @@ async function loadPage() {
   function productsListHTML(order) {
     let productsListHTML = '';
 
-    order.products.forEach((productdeatils) => {
-      const product = getproduct(productdeatils.productid);
+    order.products.forEach((productDetails) => {
+      const product = getproduct(productDetails.productid);
 
       if (!product) {
-        console.error(`Product with ID ${productdeatils.productid} not found.`);
+        console.error(`Product with ID ${productDetails.productid} not found.`);
         return;
       }
 
@@ -69,11 +69,11 @@ async function loadPage() {
           </div>
           <div class="product-delivery-date">
             Arriving on: ${
-              dayjs(productdeatils.estimatedDeliveryTime).format('MMMM D, YYYY') // Correct date format
+              dayjs(productDetails.estimatedDeliveryTime).format('MMMM D, YYYY') // Correct date format
             }
           </div>
           <div class="product-quantity">
-            Quantity: ${productdeatils.quantity}
+            Quantity: ${productDetails.quantity}
           </div>
           <button class="buy-again-button button-primary js-buy-again"
             data-product-id="${product.id}">
@@ -96,14 +96,16 @@ async function loadPage() {
 
   document.querySelector('.js-orders-grid').innerHTML = ordersHTML;
 
-  // Add event listeners for "Buy it again" buttons
+  // Add event listeners for "Buy Again" buttons
   document.querySelectorAll('.js-buy-again').forEach(button => {
     button.addEventListener('click', (event) => {
       const productId = event.currentTarget.dataset.productId;
       addtocart(productId); // Add the product to the cart
       savetostorage(); // Save the updated cart state
       showcartquantity(); // Update the cart quantity in the header
+      alert('Product added to cart!');
     });
   });
 }
+
 loadPage();

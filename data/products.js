@@ -61,13 +61,15 @@ export class Product{
   name;
   rating;
   priceCents;
+  keywords;
 
   constructor(productdeatils){
     this.id = productdeatils.id;
     this.image = productdeatils.image;
     this.name = productdeatils.name;
     this.rating = productdeatils.rating;
-    this.priceCents = productdeatils.priceCents; }
+    this.priceCents = productdeatils.priceCents;
+    this.keywords = productdeatils.keywords; }
 
     getStars() {
       return `images/ratings/rating-${this.rating.stars*10}.png`;
