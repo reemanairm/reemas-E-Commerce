@@ -141,7 +141,15 @@ export function loadCart(fun) {
 }
 
 export async function loadCartAsync() {
-  const response = await fetch('https://supersimplebackend.dev/cart');
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch('https://supersimplebackend.dev/cart');
+    if (!response.ok) {
+      throw new Error('Failed to fetch cart data');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Unexpected Error: Please try again after sometime', error);
+    return []; // Return an empty array as a fallback
+  }
 }

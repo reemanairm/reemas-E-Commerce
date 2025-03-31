@@ -1,31 +1,31 @@
-import {cart,showcartquantity} from '../../data/cart.js';
+import {cart, showcartquantity, savetostorage} from '../../data/cart.js'; // Import savetostorage
 import { getproduct } from '../../data/products.js';
 import { getdeliveryoption } from '../../data/deliveryoptions.js';
 import { formatcurrency } from '../utils/money.js';
-import { addOrder } from '../../data/order.js';
+import { addOrder } from '../../data/orders.js';
 
-export function renderPaymentSummary(){
-   let productPriceCents=0;
-   let shippingPriceCents=0;
-   let cartquantity = 0;
-    
+export function renderPaymentSummary() {
+  let productPriceCents = 0;
+  let shippingPriceCents = 0;
+  let cartquantity = 0;
+
   cart.forEach((item) => {
     cartquantity += item.quantity;
-   }); 
+  });
 
-   cart.forEach((cartitem) => {
-    const product=getproduct(cartitem.productid);
+  cart.forEach((cartitem) => {
+    const product = getproduct(cartitem.productid);
     productPriceCents += product.priceCents * cartitem.quantity;
 
     const deliveryoption = getdeliveryoption(cartitem.deliveryoptionid);
     shippingPriceCents += deliveryoption.priceCents;
-   });
+  });
 
- const totalBeforeTaxCents = productPriceCents + shippingPriceCents;
- const taxCents = totalBeforeTaxCents * 0.1;
- const totalCents = totalBeforeTaxCents + taxCents;
+  const totalBeforeTaxCents = productPriceCents + shippingPriceCents;
+  const taxCents = totalBeforeTaxCents * 0.1;
+  const totalCents = totalBeforeTaxCents + taxCents;
 
- const paymentSummaryHTML = `  <div class="payment-summary">
+  const paymentSummaryHTML = `  <div class="payment-summary">
           <div class="payment-summary-title">
             Order Summary
           </div>
@@ -60,29 +60,43 @@ export function renderPaymentSummary(){
           </button>
         </div>`;
 
-    document.querySelector('.js-payment-summary').innerHTML= paymentSummaryHTML;
+  document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHTML;
 
-    document.querySelector('.js-place-order').addEventListener('click', async () => {
-      try{
-        const response = await fetch('https://supersimplebackend.dev/orders', {
-          method: 'POST',
-          headers: {
-            'Content-type': 'applications/json'
-          },
-          body: JSON.stringify({
-            cart: cart
-          })
-        });
+  document.querySelector('.js-place-order').addEventListener('click', async () => {
+    try {
+      const response = await fetch('https://supersimplebackend.dev/orders', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          cart: cart
+        })
+      });
 
-        const order = await response.json();
-        addOrder(order);
+      const order = await response.json();
+      addOrder({
+        id: order.id || `order-${Date.now()}`, // Generate an ID if not provided
+        orderTime: new Date().toISOString(),
+        totalCostCents: cart.reduce((total, item) => {
+          const product = getproduct(item.productid);
+          return total + (product.priceCents * item.quantity);
+        }, 0),
+        products: cart.map(item => ({
+          productid: item.productid,
+          quantity: item.quantity,
+          estimatedDeliveryTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString() // Example: 7 days from now
+        }))
+      });
 
-    
-      }
+      // Clear the cart after placing the order
+      cart.length = 0;
+      savetostorage(); // Save the updated cart state
 
-      catch (error) {
-        console.log('Unexpected Error: Try again later');
-      }
-        
-    window.location.href = 'orders.html';});
-  }
+      // Redirect to the orders page
+      window.location.href = 'orders.html';
+    } catch (error) {
+      console.error('Unexpected Error: Try again later', error);
+    }
+  });
+}

@@ -17,21 +17,15 @@ Promise.all([loadProductFetch(), loadCartAsync()])
     });
 
 async function loadPage() {
-
-    try{
-
-    await loadProductFetch();
-//stroring to value to get 'value2' in resolve rather using .then to access it.
+    try {
+        await loadProductFetch();
         await loadCartAsync();
+        renderCheckoutHeader();
+        renderPaymentSummary();
+        renderOrderSummary();
+    } catch (error) {
+        console.error('Unexpected Error: Please try again after sometime', error);
     }
-  catch (error){
-    console.log('Unexpected Error: Please try again after sometime');
-}
-
-    renderCheckoutHeader();
-    renderPaymentSummary();
-    renderOrderSummary();
-
 }
 
 loadPage();
