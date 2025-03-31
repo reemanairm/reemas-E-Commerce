@@ -72,7 +72,7 @@ export class Product{
     this.keywords = productdeatils.keywords; }
 
     getStars() {
-      return `images/ratings/rating-${this.rating.stars*10}.png`;
+      return `image/ratings/rating-${this.rating.stars*10}.png`;
     }
 
     getPrice() {

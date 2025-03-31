@@ -10,7 +10,7 @@ export function renderCheckoutHeader(){
     const checkout = 
     `<div class="header-content">
       <div class="checkout-header-left-section">
-        <a href="amazon.html">
+        <a href="index.html">
           <img class="amazon-logo" src="images/amazon-logo.png">
           <img class="amazon-mobile-logo" src="images/amazon-mobile-logo.png">
         </a>
@@ -18,11 +18,11 @@ export function renderCheckoutHeader(){
 
       <div class="checkout-header-middle-section">
         Checkout (<a class="return-to-home-link js-checkout"
-          href="amazon.html">${cartquantity}</a>)
+          href="index.html">${cartquantity}</a>)
       </div>
 
       <div class="checkout-header-right-section">
-        <img src="images/icons/checkout-lock-icon.png">
+        <img src="image/icons/checkout-lock-icon.png">
       </div>
     </div>
   </div>`;
