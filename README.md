@@ -8,7 +8,7 @@ The goal of this repository is to demonstrate **deep JavaScript
 programming knowledge, application architecture understanding, and
 frontend‑driven system design** using core web technologies.
 
-This project is intentionally built *without frameworks* to showcase
+This project is intentionally built **without frameworks** to showcase
 strong fundamentals and the ability to implement complex logic directly
 with JavaScript.
 
@@ -16,15 +16,15 @@ with JavaScript.
 
 This repository is included in my portfolio to demonstrate:
 
--   Strong *JavaScript programming fundamentals*
--   Ability to build *structured applications without frameworks*
--   Understanding of *frontend architecture and modular design*
+-   Strong **JavaScript programming fundamentals**
+-   Ability to build **structured applications without frameworks**
+-   Understanding of **frontend architecture and modular design**
 -   Implementation of **complex application logic using core
     JavaScript**
 -   Practical knowledge of **DOM manipulation, state management, and UI
     rendering**
 
-It highlights my *programming depth and system thinking* using
+It highlights my **programming depth and system thinking** using
 foundational web technologies.
 
 ## Why This Project Matters
@@ -53,9 +53,9 @@ architectural thinking**.
 
 ## Technologies Used
 
-*Frontend* - HTML - CSS - Vanilla JavaScript
+**Frontend** - HTML - CSS - Vanilla JavaScript
 
-*Concepts Demonstrated* - Modular JavaScript architecture -
+**Concepts Demonstrated** - Modular JavaScript architecture -
 Event‑driven programming - DOM manipulation - Dynamic UI rendering -
 Client‑side data handling - Separation of UI and application logic
 
